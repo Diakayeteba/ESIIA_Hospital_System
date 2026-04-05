@@ -1,0 +1,160 @@
+1. Présentation générale du projet
+
+Le projet consiste à concevoir et développer une application web de gestion hospitalière avec Python et Django.
+Cette application doit permettre de gérer efficacement les utilisateurs, le personnel médical et les patients, tout en mettant l’accent sur la sécurité des données médicales.
+
+L’objectif principal est de proposer un système fiable, organisé et sécurisé pour :
+
+administrer les comptes du personnel hospitalier,
+enregistrer et suivre les patients,
+permettre aux patients d’accéder à leurs documents personnels,
+protéger les accès grâce à un système d’authentification renforcé.
+2. Objectif principal
+
+Créer une plateforme hospitalière sécurisée permettant :
+
+la gestion du personnel médical,
+la gestion des patients,
+la consultation des documents personnels par les patients,
+la mise en place de mesures de sécurité avancées, notamment l’authentification à double facteur.
+3. Technologies imposées
+Langage : Python
+Framework : Django
+4. Acteurs du système
+
+L’application comportera principalement trois types d’utilisateurs :
+
+4.1. Administrateur principal / Médecin
+
+Le médecin joue le rôle d’administrateur principal du système.
+Il possède les droits complets sur l’application.
+
+Ses permissions :
+gérer les personnels de santé ;
+ajouter, modifier, supprimer et consulter les médecins ;
+ajouter, modifier, supprimer et consulter les infirmiers ;
+consulter les dossiers des patients ;
+gérer les informations médicales et administratives des patients ;
+avoir un accès global à la plateforme.
+4.2. Infirmier / Infirmière
+
+L’infirmier a un rôle plus limité afin de respecter la confidentialité et la hiérarchie des accès.
+
+Ses permissions :
+enregistrer un nouveau patient dans le système.
+Ses restrictions :
+ne peut pas modifier les informations d’un patient ;
+ne peut pas supprimer un patient ;
+ne peut pas consulter les informations personnelles complètes des patients ;
+n’a pas accès aux fonctions d’administration globale.
+4.3. Patient
+
+Le patient est un utilisateur externe du système.
+
+Ses permissions :
+créer son propre compte ;
+se connecter à son espace personnel ;
+consulter uniquement ses documents personnels ;
+accéder uniquement à son propre dossier grâce à un identifiant unique.
+Ses restrictions :
+ne peut consulter aucun autre compte ;
+ne peut modifier les données sensibles réservées au personnel médical ;
+ne peut accéder qu’aux documents qui lui appartiennent.
+5. Fonctionnalités principales
+5.1. Module de gestion du personnel
+
+Ce module est destiné à l’administrateur principal.
+
+Il doit permettre :
+
+l’ajout d’un médecin ;
+l’ajout d’un infirmier ;
+la modification des informations du personnel ;
+la suppression d’un membre du personnel ;
+l’affichage de la liste des personnels.
+5.2. Module de gestion des patients
+
+Ce module concerne l’enregistrement et le suivi des patients.
+
+Il doit permettre :
+
+l’enregistrement d’un patient ;
+l’attribution d’un numéro d’identification unique à chaque patient ;
+la consultation des dossiers patients selon les droits d’accès ;
+la consultation des documents personnels par le patient lui-même.
+5.3. Espace patient
+
+Chaque patient doit disposer d’un espace personnel sécurisé.
+
+Cet espace doit permettre :
+
+la création d’un compte ;
+la connexion sécurisée ;
+l’accès aux documents personnels ;
+l’accès exclusif à son propre compte grâce à son ID patient unique.
+6. Gestion des rôles et permissions
+
+L’un des points essentiels du projet est la gestion des autorisations selon le profil connecté.
+
+Règles de gestion :
+Médecin : accès total ;
+Infirmier : enregistrement de patient uniquement ;
+Patient : accès limité à ses propres informations.
+
+Cette séparation des rôles garantit :
+
+une meilleure organisation ;
+la confidentialité des données ;
+une sécurité renforcée ;
+une utilisation réaliste du système hospitalier.
+7. Exigences de sécurité
+
+La sécurité est une partie très importante du projet.
+
+7.1. Authentification classique
+
+L’utilisateur doit d’abord saisir :
+
+son nom d’utilisateur ;
+son mot de passe.
+7.2. Authentification à double facteur (2FA)
+
+Après la saisie correcte des identifiants, l’utilisateur doit recevoir un code de vérification par :
+
+e-mail, ou
+SMS.
+
+L’accès n’est autorisé qu’après validation de ce second code.
+
+7.3. Politique de mot de passe
+
+Le mot de passe doit contenir au minimum 10 caractères, avec obligatoirement :
+
+une lettre majuscule (A-Z) ;
+une lettre minuscule (a-z) ;
+un chiffre (1-9) ;
+un caractère spécial parmi : @, !, $
+
+Exemple de mot de passe valide :
+Hopital@2026
+
+7.4. Identifiant unique du patient
+
+Chaque patient doit posséder un numéro ID personnel et unique permettant :
+
+d’identifier précisément son dossier ;
+de limiter l’accès à son propre compte ;
+d’éviter toute confusion entre les patients.
+7.5. Autres mesures de sécurité recommandées
+
+Comme le professeur a précisé que “toute autre méthode de sécurité est un plus”, tu peux ajouter :
+
+hachage sécurisé des mots de passe ;
+limitation du nombre de tentatives de connexion ;
+déconnexion automatique après inactivité ;
+journalisation des connexions ;
+contrôle d’accès par rôle ;
+protection CSRF ;
+validation stricte des formulaires ;
+chiffrement de certaines données sensibles ;
+envoi d’alertes en cas de connexion suspecte.

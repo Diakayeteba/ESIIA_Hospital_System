@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Supprimer patient — EHS{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Supprimer le patient</h1>
+  <p>Confirmer la suppression de <strong>{{ patient.name }}</strong> ({{ patient.unique_id }}) ? Les documents associés seront supprimés.</p>
+  <form method="post">
+    {% csrf_token %}
+    <div class="actions">
+      <button type="submit" class="btn btn--danger">Supprimer</button>
+      <a class="btn btn--secondary" href="{% url 'patients:doctor_detail' patient.pk %}">Annuler</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

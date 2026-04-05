@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Mes documents — EHS{% endblock %}
+{% block content %}
+<div class="card card--wide">
+  <h1>Mes documents</h1>
+  {% if profile %}
+    <p class="muted">Dossier <code>{{ profile.unique_id }}</code></p>
+    {% if documents %}
+      <ul>
+        {% for d in documents %}
+          <li>
+            <a href="{{ d.file.url }}" target="_blank" rel="noopener">{{ d.title }}</a>
+            <span class="muted">— ajouté le {{ d.uploaded_at|date:"d/m/Y" }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted">Aucun document pour le moment.</p>
+    {% endif %}
+  {% else %}
+    <p class="muted">Compte non relié à un dossier.</p>
+  {% endif %}
+</div>
+{% endblock %}

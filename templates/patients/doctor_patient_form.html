@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} — EHS{% endblock %}
+{% block content %}
+<div class="card card--wide" style="max-width:720px;">
+  <h1>{{ title }}</h1>
+  <p class="muted">Dossier : {{ patient.unique_id }}</p>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-row">
+        {{ field.label_tag }}
+        {{ field }}
+        {% for error in field.errors %}<p class="help" style="color:var(--danger);">{{ error }}</p>{% endfor %}
+      </div>
+    {% endfor %}
+    <div class="actions">
+      <button type="submit" class="btn">Enregistrer</button>
+      <a class="btn btn--secondary" href="{% url 'patients:doctor_detail' patient.pk %}">Annuler</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

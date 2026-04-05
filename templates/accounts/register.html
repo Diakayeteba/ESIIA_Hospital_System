@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Inscription patient — EHS{% endblock %}
+{% block content %}
+<div class="card card--wide" style="max-width:640px;">
+  <h1>Inscription patient</h1>
+  <p class="muted">Renseignez l’identifiant unique fourni après votre enregistrement par un infirmier.</p>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-row">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.help_text %}<p class="help">{{ field.help_text }}</p>{% endif %}
+        {% for error in field.errors %}<p class="help" style="color:var(--danger);">{{ error }}</p>{% endfor %}
+      </div>
+    {% endfor %}
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+        <p class="help" style="color:var(--danger);">{{ error }}</p>
+      {% endfor %}
+    {% endif %}
+    <button type="submit" class="btn">Créer mon compte</button>
+  </form>
+</div>
+{% endblock %}

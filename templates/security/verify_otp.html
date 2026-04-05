@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Vérification OTP — EHS{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Double authentification</h1>
+  <p class="muted">Un code à <strong>6 chiffres</strong> a été envoyé à l’adresse e-mail de <strong>{{ otp_user.get_username }}</strong>. En développement, cherchez la ligne <code>[EHS OTP]</code> dans la console du serveur.</p>
+  <p class="muted">Si vous vous êtes connecté ailleurs (ex. admin Django) dans un autre onglet, <strong>rechargez cette page</strong> (F5) avant de valider le code — sinon le jeton CSRF devient invalide.</p>
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-row">
+      <label for="code">Code OTP</label>
+      <input type="text" name="code" id="code" inputmode="numeric" pattern="[0-9]*" maxlength="16" required autocomplete="one-time-code" autofocus placeholder="6 chiffres">
+    </div>
+    <button type="submit" class="btn" id="otp-submit">Valider</button>
+  </form>
+  <script>
+    (function () {
+      var f = document.querySelector('form[method="post"]');
+      if (!f) return;
+      f.addEventListener('submit', function () {
+        var b = document.getElementById('otp-submit');
+        if (b) { b.disabled = true; b.textContent = 'Vérification…'; }
+      });
+    })();
+  </script>
+  <p class="muted" style="margin-top:1rem;"><a href="{% url 'accounts:login' %}">Revenir à la connexion</a></p>
+</div>
+{% endblock %}

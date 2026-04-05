@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Personnel — EHS{% endblock %}
+{% block content %}
+<div class="card card--wide">
+  <h1>Personnel médical</h1>
+  <p class="actions"><a class="btn" href="{% url 'staff:create' %}">Ajouter un membre</a></p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Utilisateur</th>
+          <th>E-mail</th>
+          <th>Rôle</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for u in staff_users %}
+          <tr>
+            <td>{{ u.get_full_name|default:u.username }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.get_role_display }}</td>
+            <td>
+              <a href="{% url 'staff:edit' u.pk %}">Modifier</a>
+              ·
+              <a href="{% url 'staff:delete' u.pk %}">Supprimer</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4" class="muted">Aucun compte personnel.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

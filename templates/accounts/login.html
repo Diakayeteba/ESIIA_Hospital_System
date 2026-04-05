@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Connexion — EHS{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Connexion</h1>
+  <p class="muted">Après validation du mot de passe, un code OTP vous est envoyé par e-mail.</p>
+  <form method="post" action="">
+    {% csrf_token %}
+    <div class="form-row">
+      <label for="username">Nom d’utilisateur</label>
+      <input type="text" name="username" id="username" required autocomplete="username" autofocus>
+    </div>
+    <div class="form-row">
+      <label for="password">Mot de passe</label>
+      <input type="password" name="password" id="password" required autocomplete="current-password">
+    </div>
+    <button type="submit" class="btn" id="login-submit">Continuer</button>
+  </form>
+  <script>
+    (function () {
+      var f = document.querySelector('form[method="post"]');
+      if (!f) return;
+      f.addEventListener('submit', function () {
+        var b = document.getElementById('login-submit');
+        if (b) { b.disabled = true; b.textContent = 'Envoi…'; }
+      });
+    })();
+  </script>
+  <p class="muted" style="margin-top:1rem;">
+    <a href="{% url 'accounts:password_reset' %}">Mot de passe oublié ?</a>
+    — <a href="{% url 'accounts:register_patient' %}">Créer un compte patient</a>
+  </p>
+</div>
+{% endblock %}

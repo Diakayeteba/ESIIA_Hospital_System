@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}{{ patient.name }} — EHS{% endblock %}
+{% block content %}
+<div class="card card--wide">
+  <h1>{{ patient.name }}</h1>
+  <p><strong>Identifiant :</strong> <code>{{ patient.unique_id }}</code> — <strong>Âge :</strong> {{ patient.age }}</p>
+  <p><strong>Enregistré par :</strong> {{ patient.created_by.get_username }} le {{ patient.created_at|date:"d/m/Y H:i" }}</p>
+  <h2>Informations médicales</h2>
+  <p>{{ patient.medical_info|default:"—"|linebreaksbr }}</p>
+  <div class="actions">
+    <a class="btn" href="{% url 'patients:doctor_document_upload' patient.pk %}">Ajouter un document</a>
+    <a class="btn btn--secondary" href="{% url 'patients:doctor_edit' patient.pk %}">Modifier</a>
+    <a class="btn btn--danger" href="{% url 'patients:doctor_delete' patient.pk %}">Supprimer</a>
+    <a class="btn btn--secondary" href="{% url 'patients:doctor_list' %}">Liste</a>
+  </div>
+  <h2>Documents</h2>
+  {% if documents %}
+    <ul>
+      {% for d in documents %}
+        <li>
+          <a href="{{ d.file.url }}" target="_blank" rel="noopener">{{ d.title }}</a>
+          <span class="muted">— {{ d.uploaded_at|date:"d/m/Y" }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">Aucun document.</p>
+  {% endif %}
+</div>
+{% endblock %}

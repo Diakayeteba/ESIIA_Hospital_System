@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Médecin — EHS{% endblock %}
+{% block content %}
+<div class="card card--wide">
+  <h1>Espace médecin</h1>
+  <p class="muted">Accès complet : gestion du personnel, dossiers patients et documents.</p>
+  <ul>
+    <li><a href="{% url 'staff:list' %}">Gérer le personnel (médecins et infirmiers)</a></li>
+    <li><a href="{% url 'patients:doctor_list' %}">Liste des patients et dossiers complets</a></li>
+  </ul>
+</div>
+{% endblock %}

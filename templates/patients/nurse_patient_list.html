@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Mes enregistrements — EHS{% endblock %}
+{% block content %}
+<div class="card card--wide">
+  <h1>Patients que vous avez enregistrés</h1>
+  <p class="muted">Les informations médicales détaillées ne sont pas affichées dans cet espace.</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Identifiant</th>
+          <th>Nom</th>
+          <th>Âge</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in patients %}
+          <tr>
+            <td><code>{{ p.unique_id }}</code></td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.age }}</td>
+            <td>{{ p.created_at|date:"d/m/Y H:i" }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="4" class="muted">Aucun patient enregistré.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

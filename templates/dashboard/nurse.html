@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Infirmier·e — EHS{% endblock %}
+{% block content %}
+<div class="card card--wide">
+  <h1>Espace infirmier·e</h1>
+  <p class="muted">Vous pouvez enregistrer de nouveaux patients et consulter la liste de vos enregistrements (sans données médicales sensibles).</p>
+  <ul>
+    <li><a href="{% url 'patients:nurse_create' %}">Enregistrer un nouveau patient</a></li>
+    <li><a href="{% url 'patients:nurse_list' %}">Mes patients enregistrés</a></li>
+  </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Patient — EHS{% endblock %}
+{% block content %}
+<div class="card card--wide">
+  <h1>Espace patient</h1>
+  {% if patient_profile %}
+    <p>Votre identifiant dossier : <strong>{{ patient_profile.unique_id }}</strong></p>
+    <p class="muted">Consultez uniquement les documents qui vous sont destinés.</p>
+    <p><a class="btn" href="{% url 'patients:patient_documents' %}">Mes documents</a></p>
+  {% else %}
+    <p class="muted">Votre compte n’est pas encore relié à un dossier hospitalier. Contactez l’accueil avec votre identifiant patient.</p>
+  {% endif %}
+</div>
+{% endblock %}
