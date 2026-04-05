@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESIIA Hospital System</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">🏥</span>
+      <span class="logo-text">ESIIA Hospital</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-link active" data-section="dashboard">
+        <span class="nav-icon">📊</span> Tableau de bord
+      </a>
+      <a href="#" class="nav-link" data-section="patients">
+        <span class="nav-icon">👥</span> Patients
+      </a>
+      <a href="#" class="nav-link" data-section="appointments">
+        <span class="nav-icon">📅</span> Rendez-vous
+      </a>
+      <a href="#" class="nav-link" data-section="doctors">
+        <span class="nav-icon">👨‍⚕️</span> Médecins
+      </a>
+      <a href="#" class="nav-link" data-section="reports">
+        <span class="nav-icon">📋</span> Rapports
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <div class="user-avatar">AD</div>
+        <div>
+          <div class="user-name">Admin</div>
+          <div class="user-role">Administrateur</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main">
+    <header class="topbar">
+      <h1 class="page-title" id="page-title">Tableau de bord</h1>
+      <div class="topbar-right">
+        <span class="date-display" id="current-date"></span>
+        <button class="btn btn-primary" id="add-btn">+ Ajouter</button>
+      </div>
+    </header>
+
+    <!-- Dashboard Section -->
+    <section class="section active" id="section-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card stat-blue">
+          <div class="stat-icon">👥</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-patients">128</div>
+            <div class="stat-label">Patients enregistrés</div>
+          </div>
+        </div>
+        <div class="stat-card stat-green">
+          <div class="stat-icon">📅</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-appointments">24</div>
+            <div class="stat-label">Rendez-vous aujourd'hui</div>
+          </div>
+        </div>
+        <div class="stat-card stat-purple">
+          <div class="stat-icon">👨‍⚕️</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-doctors">12</div>
+            <div class="stat-label">Médecins disponibles</div>
+          </div>
+        </div>
+        <div class="stat-card stat-orange">
+          <div class="stat-icon">🏥</div>
+          <div class="stat-info">
+            <div class="stat-value" id="stat-beds">45</div>
+            <div class="stat-label">Lits disponibles</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Derniers patients</h2>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Âge</th>
+                <th>Médecin</th>
+                <th>Statut</th>
+              </tr>
+            </thead>
+            <tbody id="recent-patients-table">
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Prochains rendez-vous</h2>
+          </div>
+          <div class="appointment-list" id="upcoming-appointments">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Patients Section -->
+    <section class="section" id="section-patients">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Gestion des patients</h2>
+          <input class="search-input" id="patient-search" type="text" placeholder="Rechercher un patient..." />
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nom complet</th>
+              <th>Date de naissance</th>
+              <th>Téléphone</th>
+              <th>Médecin traitant</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="patients-table">
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Appointments Section -->
+    <section class="section" id="section-appointments">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Rendez-vous</h2>
+          <input class="search-input" id="appointment-search" type="text" placeholder="Rechercher..." />
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Patient</th>
+              <th>Médecin</th>
+              <th>Date</th>
+              <th>Heure</th>
+              <th>Motif</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody id="appointments-table">
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Doctors Section -->
+    <section class="section" id="section-doctors">
+      <div class="doctors-grid" id="doctors-grid">
+      </div>
+    </section>
+
+    <!-- Reports Section -->
+    <section class="section" id="section-reports">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Rapports & Statistiques</h2>
+        </div>
+        <div class="reports-grid">
+          <div class="report-card">
+            <h3>Admissions ce mois</h3>
+            <div class="chart-bars" id="chart-admissions"></div>
+          </div>
+          <div class="report-card">
+            <h3>Répartition par spécialité</h3>
+            <div class="pie-legend" id="pie-specialties"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">Ajouter un patient</h2>
+        <button class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
