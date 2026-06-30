@@ -19,7 +19,7 @@
             <a href="{% url 'patients:doctor_list' %}">Patients (médecin)</a>
           {% elif user.role == 'nurse' %}
             <a href="{% url 'patients:nurse_create' %}">Nouveau patient</a>
-            <a href="{% url 'patients:nurse_list' %}">Mes enregistrements</a>
+            <a href="{% url 'patients:nurse_list' %}">Mes patients</a>
           {% elif user.role == 'patient' %}
             <a href="{% url 'patients:patient_documents' %}">Mes documents</a>
           {% endif %}

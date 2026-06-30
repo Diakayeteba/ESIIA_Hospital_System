@@ -26,7 +26,7 @@ def _debug_log_otp(user, code: str) -> None:
         return
     msg = f'[EHS OTP] compte={user.get_username()} code={code}'
     print(f'\n{msg}\n', flush=True)
-    # Fichier à la racine du projet (pratique si le terminal Cursor n’affiche pas tout)
+    # Fichier à la racine du projet (pratique si le terminal  n’affiche pas tout)
     try:
         log_path = settings.BASE_DIR / 'ehs_otp_debug.log'
         line = f'{timezone.now().isoformat(sep=" ", timespec="seconds")} | {msg}\n'
